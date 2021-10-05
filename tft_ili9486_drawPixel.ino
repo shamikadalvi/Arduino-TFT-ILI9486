@@ -204,7 +204,7 @@ uint16_t  _lcd_xor, _lcd_capable;
  int16_t _width;     
  int16_t _height;  
  uint8_t rotation;
-
+/*
 #define  BLACK   0x0000
 #define RED    0x001F
 #define BLUE     0xF800
@@ -214,8 +214,14 @@ uint16_t  _lcd_xor, _lcd_capable;
 #define YELLOW  0xFFE0
 #define WHITE   0xFFFF
 #define ORANGE  0xFDA0  
-
-
+*/
+#define  BLACK   0x0000
+#define  BLUE    0x001F
+#define  RED     0xF800
+#define  GREEN   0x07E0
+#define MAGENTA  0xF81F
+#define  YELLOW  0xFFE0 
+#define  WHITE    0xFFFF
 
 #define MIPI_DCS_REV1   (1<<0)
 #define AUTO_READINC    (1<<1)
@@ -516,8 +522,161 @@ void begin_new(uint16_t ID)
         CS_IDLE;
       
       
+     ///gamma control
+    //0xE0, 15, 0x0F, 0x21, 0x1C, 0x0B, 0x0E, 0x08, 0x49, 0x98, 0x38, 0x09, 0x11, 0x03, 0x14, 0x10, 0x00, 
+   
+
+
+    
+     
+          CS_ACTIVE();
+          CD_COMMAND();
+          write8(224); //0xE0
+    
+    
+          CD_DATA();
+          write8(15);  //0x0F
+    
+    
+          CD_DATA();
+          write8(33); //0x21
+    
+    
+          CD_DATA();
+          write8(28); //0x1C
+    
+    
+          CD_DATA();
+          write8(11); //0x0B
+
+          CD_DATA();
+          write8(14); //0x0E
+
+          
+          CD_DATA();
+          write8(8); //0x08
+
+          
+          CD_DATA();
+          write8(73); //0x49
+
+          
+          CD_DATA();
+          write8(152); //0x98
+
+
+
+          CD_DATA();
+          write8(56); //0x38
+
+          
+          CD_DATA();
+          write8(9); //0x09
+
+
+          CD_DATA();
+          write8(17); //0x11
+
+          
+          CD_DATA();
+          write8(3); //0x03
+
+        
+          CD_DATA();
+          write8(20);  //0x14
+
+          
+          CD_DATA();
+          write8(16); //0x10    
+
+          CD_DATA();
+          write8(0);  // 0x00   
+
+
+    
+    
+          CS_IDLE();   
+
+        //0xE1, 15, 0x0F, 0x2F, 0x2B, 0x0C, 0x0E, 0x06, 0x47, 0x76, 0x37, 0x07, 0x11, 0x04, 0x23, 0x1E, 0x00,      
+    
+
+            
+          CS_ACTIVE();
+          CD_COMMAND();
+          write8(225);   //0xE1
+    
+    
+         
+    
+    
+          CD_DATA();
+          write8(15); //0x0F
+    
+    
+          CD_DATA();
+          write8(47);  //0x2F 
+    
+    
+          CD_DATA();
+          write8(43); //0x2B
+
+          CD_DATA();
+          write8(12); //0x0C
+
+          
+          CD_DATA();
+          write8(14);  //0x0E
+
+          
+          CD_DATA();
+          write8(6);   //0x06
+
+          
+          CD_DATA();
+          write8(71);   //0x47
+
+
+
+          CD_DATA();
+          write8(118);   //0x76
+
+          
+          CD_DATA();
+          write8(55);   //0x37
+
+
+          CD_DATA();
+          write8(7);  //0x07
+
+          
+          CD_DATA();
+          write8(17);  //0x11
+
+        
+          CD_DATA();
+          write8(4);    //0x04
+
+          
+          CD_DATA();
+          write8(35);   //0x23    
+
+          CD_DATA();
+          write8(30);    //0x1E
+
+
+          CD_DATA();
+          write8(0);  //0x00   
+
+
+    
+    
+          CS_IDLE();   
+ 
       
-      
+  
+  
+  
+  
       
 
       
